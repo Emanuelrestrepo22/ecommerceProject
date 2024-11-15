@@ -1,0 +1,255 @@
+/* styles.css */
+/* Importación de fuentes de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap');
+
+/* Variables de color para fácil referencia */
+:root {
+    --color-primario: #a93545;
+    --color-secundario: #f2d5d9;
+    --color-oscuro: #581828;
+    --color-resaltado: #ffb5c2;
+    --color-neutro: #f9f6f7;
+}
+
+/* Estilos generales */
+/* Aplicando Google Font */
+body {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--color-neutro);
+    color: var(--color-oscuro);
+    margin: 0;
+    padding: 0;
+}
+
+/* titulos */
+.title{
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: italic;
+}
+
+.title2{
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+
+/* Header */
+header {
+    background-color: #900C3F; /* Color principal */
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Estilos para el Header */
+header {
+    background-color: var(--color-primario);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+/* Navegación */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: var(--color-neutro);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: var(--color-resaltado);
+}
+
+/* Secciones Generales */
+section {
+    padding: 2rem;
+    background-color: var(--color-secundario);
+    margin: 1rem;
+    border-radius: 8px;
+}
+
+h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--color-primario);
+}
+
+/* Estilos para la Sección de Productos */
+.productos-container {
+    display: flex;
+    gap: 1rem;
+}
+
+.card {
+    background-color: var(--color-neutro);
+    color: var(--color-oscuro);
+    padding: 1rem;
+    flex: 1;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    background-color: var(--color-resaltado);
+}
+
+/* Sección de Reseñas */
+.reseñas-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.reseña {
+    background-color: var(--color-neutro);
+    color: var(--color-oscuro);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Estilos de la card */
+.card {
+    background-color: var(--color-neutro); /* Color de fondo de la tarjeta */
+    color: var(--color-oscuro); /* Color del texto */
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    background-color: var(--color-resaltado);
+}
+
+/* Imagen del producto */
+.card-imagen {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    max-height: 150px;
+    object-fit: cover; /* Recorta la imagen sin perder proporciones */
+    margin-bottom: 0.5rem;
+}
+
+/* Título del producto */
+.card-titulo {
+    font-size: 1.2rem;
+    color: var(--color-primario);
+    margin: 0.5rem 0;
+}
+
+/* Descripción del producto */
+.card-descripcion {
+    font-size: 0.9rem;
+    color: var(--color-oscuro);
+    margin: 0.5rem 0;
+}
+
+/* Precio del producto */
+.card-precio {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--color-oscuro);
+    margin: 0.5rem 0;
+}
+
+/* Botón de acción en la tarjeta */
+.card-boton {
+    padding: 0.5rem 1rem;
+    background-color: var(--color-primario);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.card-boton:hover {
+    background-color: var(--color-oscuro);
+}
+
+/* Estilos para el Formulario de Contacto */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input, textarea {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid var(--color-primario);
+}
+
+button {
+    padding: 0.5rem;
+    background-color: var(--color-primario);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: var(--color-oscuro);
+}
+
+/* Estilos para el Footer */
+footer {
+    background-color: var(--color-primario);
+    color: var(--color-neutro);
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+}
+
+/* Diseño Responsivo */
+@media (max-width: 768px) {
+    .productos-container {
+        flex-direction: column;
+    }
+
+    .reseñas-container {
+        grid-template-columns: 1fr;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+}

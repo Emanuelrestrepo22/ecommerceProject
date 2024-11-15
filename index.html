@@ -1,24 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Proyecto Web Básico</title>
+    <link rel="stylesheet" href="./css/styles.css">
+
+    <!--link de google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,900&display=swap" rel="stylesheet">
+
+
 </head>
 <body>
+    <!-- Encabezado de la página -->
     <header>
-        <h1>Mi Sitio web</h1>
+        <h1 class="title">Tienda Online</h1>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#reseñas">Reseñas</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
     </header>
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#"></a>About us</li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
-    <main></main>
-    <footer>2024. Mi sitio web. Todos los derechos reservados</footer>
+
+    <!-- Contenido principal -->
+    <main>
+        <!-- Sección de productos -->
+        <section id="productos">
+            <h2 class="title2">Productos</h2>
+            <div class="productos-container">
+                <div class="card">
+                    <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="Imagen del producto" class="card-imagen">
+                    <h3 class="card-titulo">Nombre del Producto</h3>
+                    <p class="card-descripcion">Breve descripción del producto.</p>
+                    <p class="card-precio">$ Precio</p>
+                    <button class="card-boton">Agregar al carrito</button>
+                </div>
+                <div class="card">
+                    <img src="ruta-de-imagen.jpg" alt="Imagen del producto" class="card-imagen">
+                    <h3 class="card-titulo">Nombre del Producto</h3>
+                    <p class="card-descripcion">Breve descripción del producto.</p>
+                    <p class="card-precio">$ Precio</p>
+                    <button class="card-boton">Agregar al carrito</button>
+                </div>
+                <div class="card">
+                    <img src="ruta-de-imagen.jpg" alt="Imagen del producto" class="card-imagen">
+                    <h3 class="card-titulo">Nombre del Producto</h3>
+                    <p class="card-descripcion">Breve descripción del producto.</p>
+                    <p class="card-precio">$ Precio</p>
+                    <button class="card-boton">Agregar al carrito</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de reseñas -->
+        <section id="reseñas">
+            <h2 class="title2">Reseñas</h2>
+            <div class="reseñas-container">
+                <div class="reseña">Reseña 1</div>
+                <div class="reseña">Reseña 2</div>
+                <div class="reseña">Reseña 3</div>
+            </div>
+        </section>
+
+        <!-- Formulario de contacto -->
+        <section id="contacto">
+            <h2 class="title2">Contacto</h2>
+            <form action="https://formspree.io/f/{tu_código_formspree}" method="POST">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" name="mensaje" required></textarea>
+                
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>&copy; 2023 Nombre del Proyecto</p>
+    </footer>
 </body>
 </html>

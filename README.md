@@ -1,3 +1,8 @@
-Name of Project: eCommerce page
-description:
-This project is a basic webpage developed as part of a Front-End course. The page is structured with semantic HTML and uses header, main, and footer tags to organize the content. The goal is to learn how to create a basic structure of a website and prepare it for future improvements with CSS and JavaScript.# ecommerceProject
+# Proyecto Web Básico
+
+Este es un proyecto básico que sigue buenas prácticas de HTML, CSS y diseño responsivo. Incluye:
+- Una estructura HTML semántica.
+- Un formulario de contacto funcional.
+- Estilos CSS básicos, incluyendo fuentes de Google Fonts y propiedades de background.
+- Secciones de productos y reseñas organizadas con Flexbox y Grid.
+- Navegación interna y contenido multimedia integrado.
