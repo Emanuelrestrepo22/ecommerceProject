@@ -100,24 +100,42 @@ h2 {
 }
 
 /* Estilos para la Sección de Productos */
-.productos-container {
-    display: flex;
-    gap: 1rem;
+.productosContainer {
+    display: grid; /* Activar CSS Grid */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Diseño fluido */
+    gap: 1rem; /* Espaciado entre los productos */
+    padding: 2rem;
+    justify-items: center; /* Centra los elementos horizontalmente */
 }
+
 
 .card {
     background-color: var(--color-neutro);
     color: var(--color-oscuro);
     padding: 1rem;
-    flex: 1;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
     transition: transform 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%; /* Asegura que se ajusten a la celda */
 }
 
 .card:hover {
     transform: scale(1.05);
     background-color: var(--color-resaltado);
+}
+
+.card-imagen {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    max-height: 150px;
+    object-fit: cover;
+    margin-bottom: 0.5rem;
 }
 
 /* Sección de Reseñas */
@@ -239,6 +257,35 @@ footer {
     font-size: 0.9rem;
 }
 
+
+/* estilos para nuestro product list page*/
+/* Header styles */
+.header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+.header nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 18px;
+}
+.header nav a:hover {
+    text-decoration: underline;
+}
+
+/* Footer styles */
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    background: #333;
+    color: white;
+}
+
+
 /* Diseño Responsivo */
 @media (max-width: 768px) {
     .productos-container {
@@ -252,4 +299,24 @@ footer {
     nav ul {
         flex-direction: column;
     }
+}
+
+
+
+@media (max-width: 768px) {
+    .productosContainer {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Más pequeñas en móviles */
+        gap: 0.5rem; /* Menor espaciado */
+    }
+
+    .card {
+        width: 100%; /* Ocupa todo el ancho disponible */
+    }
+}
+
+
+/* ajusto responsivo carrusel*/
+.carousel-inner img {
+    object-fit: cover; /* Recorta las imágenes manteniendo sus proporciones */
+    height: 400px; /* Altura fija para las imágenes */
 }

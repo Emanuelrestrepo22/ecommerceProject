@@ -20,7 +20,7 @@
         <h1 class="title">Tienda Online</h1>
         <nav>
             <ul>
-                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="index.html">Inicio</a></li>
                 <li><a href="product-list-page.html">Productos</a></li>
                 <li><a href="review.html">Reseñas</a></li>
                 <li><a href="#contacto">Contacto</a></li>
@@ -29,50 +29,34 @@
     </header>
 
     <main>
-        <section id="productos">
-            <h2 class="title2">Productos</h2>
-            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+        <!--resenas -->
+        <section id="reseñas">
+            <h2 class="title2 text-center">Reseñas</h2>
+            <div id="reviewsCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    <!-- Diapositivas generadas dinámicamente -->
+                    <!-- Las reseñas se generarán dinámicamente aquí -->
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
         </section>
-
-        <section id="reseñas">
-            <h2 class="title2">Reseñas</h2>
-            <div class="reseñas-container">
-                <div class="reseña">Reseña 1</div>
-                <div class="reseña">Reseña 2</div>
-                <div class="reseña">Reseña 3</div>
-            </div>
+        
         </section>
 
-        <section id="contacto">
-            <h2 class="title2">Contacto</h2>
-            <form action="https://formspree.io/f/{tu_código_formspree}" method="POST">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
-                <label for="email">Correo electrónico:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="mensaje">Mensaje:</label>
-                <textarea id="mensaje" name="mensaje" required></textarea>
-                <button type="submit">Enviar</button>
-            </form>
-        </section>
+    
     </main>
 
     <footer>
         <p>&copy; 2023 Nombre del Proyecto</p>
     </footer>
 
-    <script src="card.js"></script>
+    <script src="review.js"></script>
 </body>
 </html>
+
