@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap');
 
 /* Variables de color para fácil referencia */
+
 :root {
     --color-primario: #a93545;
     --color-secundario: #f2d5d9;
@@ -25,7 +26,7 @@ body {
 }
 
 /* titulos */
-.title{
+.navbar-brand{
     font-family: "Roboto", sans-serif;
     font-weight: 900;
     font-style: italic;
@@ -63,6 +64,9 @@ header h1 {
 }
 
 /* Navegación */
+.navbar{
+    background-color: #900C3F;
+}
 nav ul {
     list-style: none;
     padding: 0;
@@ -186,6 +190,7 @@ h2 {
 
 /* Título del producto */
 .card-titulo {
+    font-family: 'Playfair Display', serif;
     font-size: 1.2rem;
     color: var(--color-primario);
     margin: 0.5rem 0;
@@ -250,7 +255,7 @@ button:hover {
 
 /* Estilos para el Footer */
 footer {
-    background-color: var(--color-primario);
+    background-color: #900C3F;
     color: var(--color-neutro);
     text-align: center;
     padding: 1rem;
@@ -276,14 +281,6 @@ footer {
     text-decoration: underline;
 }
 
-/* Footer styles */
-.footer {
-    text-align: center;
-    margin-top: 20px;
-    padding: 10px;
-    background: #333;
-    color: white;
-}
 
 
 /* Diseño Responsivo */
@@ -310,8 +307,80 @@ footer {
     }
 
     .card {
-        width: 100%; /* Ocupa todo el ancho disponible */
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        padding: 1rem;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    max-height: 150px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.card h3 {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+.card p {
+    margin: 0.5rem 0;
+    color: #555;
+}
+
+.card-boton {
+    padding: 0.5rem 1rem;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.card-boton:hover {
+    background-color: #900C3F;
+}
+
+/* Cart Styles */
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.cart-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.cart-item h4 {
+    margin: 0;
+    flex: 1;
+}
+
+.cart-item button {
+    padding: 0.3rem 0.6rem;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cart-item button:hover {
+    background-color: #a71d2a;
 }
 
 
@@ -319,4 +388,18 @@ footer {
 .carousel-inner img {
     object-fit: cover; /* Recorta las imágenes manteniendo sus proporciones */
     height: 400px; /* Altura fija para las imágenes */
+}
+
+.navbar-custom {
+    background-color: #900C3F !important; /* Cambia el color de fondo */
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+    color: white !important; /* Color del texto */
+    font-weight: bold;
+}
+
+.navbar-custom .nav-link:hover {
+    color: #f9f6f7 !important; /* Color del texto al pasar el mouse */
 }

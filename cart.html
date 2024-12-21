@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalles del Producto</title>
+    <title>Carrito de Compras</title>
     <link rel="stylesheet" href="./css/styles.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,13 +35,17 @@
         
     </header>
     
-    
 
     <main>
-        <section id="product-details">
-            <div class="product-container">
-                <!-- Detalles del producto generados dinámicamente -->
+        <section id="carrito">
+            <h2 class="text-center mt-4">Tu Carrito</h2>
+            <div id="carritoContainer">
+                <!-- Productos del carrito generados dinámicamente -->
             </div>
+            <div class="cart-summary">
+                <h4>Total del Carrito: <span id="carrito-total">$0.00</span></h4>
+            </div>
+            
         </section>
     </main>
 
@@ -49,6 +53,7 @@
         <p>&copy; 2023 rick and Morty Store</p>
     </footer>
 
-    <script src="card.js"></script>
+    <script src="cart.js"></script>
 </body>
 </html>
+
