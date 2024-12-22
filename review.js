@@ -33,3 +33,55 @@ function renderReviews() {
 
 // Llamar a la función para cargar las reseñas
 renderReviews();
+
+
+function validateContactForm() {
+    // Selecciona el formulario y sus campos
+    const form = document.querySelector("#contactForm");
+    const nombre = document.querySelector("#nombre");
+    const email = document.querySelector("#email");
+    const mensaje = document.querySelector("#mensaje");
+
+    // Verifica si los campos están completos
+    let isFormValid = true;
+    const missingFields = [];
+
+    if (!nombre.value.trim()) {
+        isFormValid = false;
+        missingFields.push("Nombre");
+    }
+
+    if (!email.value.trim()) {
+        isFormValid = false;
+        missingFields.push("Email");
+    }
+
+    if (!mensaje.value.trim()) {
+        isFormValid = false;
+        missingFields.push("Mensaje");
+    }
+
+    // Muestra mensajes en la consola
+    if (isFormValid) {
+        console.log("Todos los campos están completos. El formulario está listo para enviarse.");
+    } else {
+        console.warn("Faltan los siguientes campos por completar:", missingFields.join(", "));
+    }
+
+    // Retorna el estado del formulario (true: válido, false: inválido)
+    return isFormValid;
+}
+
+// Asignar evento al formulario
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector("#contactForm");
+    if (form) {
+        form.addEventListener("submit", (event) => {
+            // Prevenir el envío del formulario si no está completo
+            if (!validateContactForm()) {
+                event.preventDefault(); // Evita el envío del formulario
+            }
+        });
+    }
+});
+

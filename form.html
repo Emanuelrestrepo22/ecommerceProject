@@ -35,19 +35,20 @@
     <!-- Formulario -->
     <div class="container mt-5">
         <h1 class="text-center mb-4">Formulario de Contacto</h1>
-        <form>
+        <form  action="https://formspree.io/f/xzzblwld"
+        method="POST">
             <div class="mb-3">
                 <label for="nombreCompleto" class="form-label">Nombre Completo</label>
                 <input type="text" class="form-control" id="nombreCompleto" required>
             </div>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Correo Electrónico</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
                 <div id="emailHelp" class="form-text">Nunca compartiremos tu correo con nadie más.</div>
             </div>
             <div class="mb-3">
                 <label for="mensaje" class="form-label">Mensaje</label>
-                <textarea class="form-control" id="mensaje" rows="4" required></textarea>
+                <textarea name="message" class="form-control" id="mensaje" rows="4" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
