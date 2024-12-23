@@ -39,69 +39,6 @@ body {
 }
 
 
-/* Header */
-header {
-    background-color: #900C3F; /* Color principal */
-    color: white;
-    padding: 1.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Estilos para el Header */
-header {
-    background-color: var(--color-primario);
-    color: white;
-    padding: 1rem;
-    text-align: center;
-    font-family: 'Playfair Display', serif;
-}
-
-header h1 {
-    margin: 0;
-    font-size: 2rem;
-}
-
-/* Navegación */
-.navbar{
-    background-color: #900C3F;
-}
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-}
-
-nav ul li {
-    display: inline;
-}
-
-nav ul li a {
-    color: var(--color-neutro);
-    text-decoration: none;
-    font-weight: bold;
-}
-
-nav ul li a:hover {
-    color: var(--color-resaltado);
-}
-
-/* Secciones Generales */
-section {
-    padding: 2rem;
-    background-color: var(--color-secundario);
-    margin: 1rem;
-    border-radius: 8px;
-}
-
-h2 {
-    font-family: 'Playfair Display', serif;
-    color: var(--color-primario);
-}
 
 /* Estilos para la Sección de Productos */
 .productosContainer {
@@ -390,18 +327,97 @@ footer {
     height: 400px; /* Altura fija para las imágenes */
 }
 
-.navbar-custom {
-    background-color: #900C3F !important; /* Cambia el color de fondo */
+
+/* premisa para navbar con flexbox
+/* General Navbar Styles */
+.main-header {
+    background-color: #900C3F;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-.navbar-custom .navbar-brand,
-.navbar-custom .nav-link {
-    color: white !important; /* Color del texto */
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
     font-weight: bold;
+    color: white;
+    text-decoration: none;
 }
 
-.navbar-custom .nav-link:hover {
-    color: #f9f6f7 !important; /* Color del texto al pasar el mouse */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
 }
 
+.main-nav {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
 
+.nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-list a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s;
+}
+
+.nav-list a:hover {
+    background-color: #581828;
+    border-radius: 5px;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .main-nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #900C3F;
+        padding: 1rem;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .main-nav.active {
+        display: flex;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .nav-list a {
+        text-align: center;
+    }
+}

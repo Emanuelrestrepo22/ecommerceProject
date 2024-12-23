@@ -210,3 +210,22 @@ document.addEventListener("DOMContentLoaded", () => {
         renderCart();
     }
 });
+
+//para resolver problema responsivo de mi navbar
+document.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.getElementById("menu-toggle");
+    const mainNav = document.getElementById("main-nav");
+
+    // Toggle the menu for mobile view
+    menuToggle.addEventListener("click", () => {
+        mainNav.classList.toggle("active");
+    });
+
+    // Close the menu when a link is clicked (optional, for single-page applications)
+    const navLinks = document.querySelectorAll(".nav-list a");
+    navLinks.forEach(link => {
+        link.addEventListener("click", () => {
+            mainNav.classList.remove("active");
+        });
+    });
+});
