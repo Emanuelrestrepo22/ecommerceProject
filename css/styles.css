@@ -424,3 +424,94 @@ footer {
         text-align: center;
     }
 }
+
+
+
+/* Estilos generales del formulario */
+#contactForm {
+    background-color: #f9f9f9; /* Fondo suave */
+    padding: 2rem; /* Espaciado interno */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    max-width: 600px; /* Ancho máximo */
+    margin: 0 auto; /* Centrar el formulario */
+}
+
+/* Títulos y etiquetas */
+#contactForm h1 {
+    font-family: "Roboto", sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-primario);
+}
+
+#contactForm label {
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-oscuro);
+    margin-bottom: 0.5rem;
+    display: block; /* Asegura que las etiquetas estén sobre los inputs */
+}
+
+/* Campos del formulario */
+#contactForm input,
+#contactForm textarea {
+    width: 100%; /* Ocupa todo el ancho del contenedor */
+    padding: 0.75rem; /* Espaciado interno */
+    border: 1px solid var(--color-primario); /* Borde con el color principal */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 1rem;
+    color: var(--color-oscuro);
+    margin-bottom: 1rem; /* Espaciado entre campos */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra interna */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Animación en foco */
+}
+
+#contactForm input:focus,
+#contactForm textarea:focus {
+    border-color: var(--color-secundario); /* Cambio de color en foco */
+    box-shadow: 0 0 5px rgba(169, 53, 69, 0.5); /* Sombra sutil en foco */
+    outline: none; /* Elimina el contorno predeterminado */
+}
+
+/* Mensaje de ayuda */
+#emailHelp {
+    font-size: 0.9rem;
+    color: var(--color-oscuro);
+    margin-bottom: 1rem;
+}
+
+/* Botón de envío */
+#contactForm button {
+    width: 100%; /* Botón ancho completo */
+    padding: 0.75rem;
+    background-color: var(--color-primario); /* Color principal */
+    color: white; /* Texto blanco */
+    border: none; /* Sin bordes */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s ease; /* Animación suave */
+}
+
+#contactForm button:hover {
+    background-color: var(--color-oscuro); /* Cambio de color al pasar el mouse */
+}
+
+/* Contenedor principal */
+.container {
+    padding: 1rem;
+}
+
+/* Título principal del formulario */
+.container h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    color: var(--color-primario);
+    margin-bottom: 1rem;
+}
+
