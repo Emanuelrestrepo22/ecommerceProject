@@ -54,8 +54,8 @@ function createProductCard(product) {
         <h3>${product.name}</h3>
         <p>Estado: ${product.status}</p>
         <p>Precio: $1000</p>
-        <button class="btn btn-primary view-details" data-id="${product.id}">Ver Detalles</button>
-        <button class="btn btn-secondary add-to-cart" data-id="${product.id}">Agregar al carrito</button>
+        <button class="btn btn-danger view-details" data-id="${product.id}">Ver Detalles</button>
+        <button class="btn btn-danger add-to-cart" data-id="${product.id}">Agregar al carrito</button>
     `;
 
     // Ver detalles
@@ -107,7 +107,7 @@ async function renderProductDetails() {
                     <p><strong>Especie:</strong> ${product.species}</p>
                     <p><strong>Género:</strong> ${product.gender}</p>
                     <p><strong>Origen:</strong> ${product.origin.name}</p>
-                    <button class="btn btn-secondary" onclick="addToCart({
+                    <button class="btn btn-danger" onclick="addToCart({
                         id: ${product.id},
                         title: '${product.name}',
                         image: '${product.image}',
