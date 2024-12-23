@@ -33,7 +33,43 @@ function renderProductList(products) {
     });
 }
 
-// Renderizar productos destacados (primeros 5) para el index
+// Mostrar productos en la consola
+function logProductsToConsole(data) {
+    console.log("Lista de productos disponibles:");
+    data.results.forEach(product => {
+        console.log(`ID: ${product.id}`);
+        console.log(`Nombre: ${product.name}`);
+        console.log(`Estado: ${product.status}`);
+        console.log(`Especie: ${product.species}`);
+        console.log(`Género: ${product.gender}`);
+        console.log(`Imagen: ${product.image}`);
+        console.log("------------------------------");
+    });
+}
+
+// Actualizar llamada a la API existente para incluir la lógica de impresión
+async function getCharactersWithLogging() {
+    try {
+        const response = await fetch(API_URL);
+        if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+        const data = await response.json();
+        if (document.querySelector("#productosContainer")) {
+            renderProductList(data);
+        }
+        if (document.querySelector("#productosDestacados")) {
+            renderFeaturedProducts(data);
+        }
+        logProductsToConsole(data); // Imprimir productos en la consola
+    } catch (error) {
+        console.error("Error al obtener productos:", error);
+    }
+}
+
+// Reemplaza la función original `getCharacters` con esta nueva
+document.addEventListener("DOMContentLoaded", () => {
+    getCharactersWithLogging();
+});
+// Renderizar git addproductos destacados (primeros 5) para el index
 function renderFeaturedProducts(products) {
     const container = document.querySelector("#productosDestacados");
     if (!container) return;

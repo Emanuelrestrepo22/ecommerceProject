@@ -38,13 +38,18 @@ function renderReviews(reviewsData) {
 // Llamar a la función para cargar las reseñas
 document.addEventListener("DOMContentLoaded", fetchReviews);
 
-
+//premisa formulario
 function validateContactForm() {
     // Selecciona el formulario y sus campos
     const form = document.querySelector("#contactForm");
-    const nombre = document.querySelector("#nombre");
-    const email = document.querySelector("#email");
+    const nombre = document.querySelector("#nombreCompleto");
+    const email = document.querySelector("#exampleInputEmail1");
     const mensaje = document.querySelector("#mensaje");
+
+    if (!form || !nombre || !email || !mensaje) {
+        console.error("No se encontraron algunos campos del formulario en el DOM.");
+        return false;
+    }
 
     // Verifica si los campos están completos
     let isFormValid = true;
@@ -52,12 +57,12 @@ function validateContactForm() {
 
     if (!nombre.value.trim()) {
         isFormValid = false;
-        missingFields.push("Nombre");
+        missingFields.push("Nombre Completo");
     }
 
     if (!email.value.trim()) {
         isFormValid = false;
-        missingFields.push("Email");
+        missingFields.push("Correo Electrónico");
     }
 
     if (!mensaje.value.trim()) {
@@ -86,6 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 event.preventDefault(); // Evita el envío del formulario
             }
         });
+    } else {
+        console.error("Formulario de contacto no encontrado en el DOM.");
     }
 });
-
