@@ -11,10 +11,10 @@ async function getCharacters() {
         if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
         const data = await response.json();
         if (document.querySelector("#productosContainer")) {
-            renderProductList(data);
+            renderProductList(data.results);
         }
         if (document.querySelector("#productosDestacados")) {
-            renderFeaturedProducts(data);
+            renderFeaturedProducts(data.results);
         }
     } catch (error) {
         console.error("Error al obtener productos:", error);
@@ -22,24 +22,24 @@ async function getCharacters() {
 }
 
 // Renderizar lista de productos
-function renderProductList(data) {
+function renderProductList(products) {
     const container = document.querySelector("#productosContainer");
     if (!container) return;
 
     container.innerHTML = ""; // Limpiar contenido anterior
-    data.results.forEach(product => {
+    products.forEach(product => {
         const card = createProductCard(product);
         container.appendChild(card);
     });
 }
 
-// Renderizar productos destacados (primeros 5)
-function renderFeaturedProducts(data) {
+// Renderizar productos destacados (primeros 5) para el index
+function renderFeaturedProducts(products) {
     const container = document.querySelector("#productosDestacados");
     if (!container) return;
 
     container.innerHTML = ""; // Limpiar contenido anterior
-    data.results.slice(0, 5).forEach(product => {
+    products.slice(0, 5).forEach(product => {
         const card = createProductCard(product);
         container.appendChild(card);
     });
@@ -54,8 +54,16 @@ function createProductCard(product) {
         <h3>${product.name}</h3>
         <p>Estado: ${product.status}</p>
         <p>Precio: $1000</p>
-        <button class="add-to-cart" data-id="${product.id}">Agregar al carrito</button>
+        <button class="btn btn-primary view-details" data-id="${product.id}">Ver Detalles</button>
+        <button class="btn btn-secondary add-to-cart" data-id="${product.id}">Agregar al carrito</button>
     `;
+
+    // Ver detalles
+    card.querySelector(".view-details").addEventListener("click", () => {
+        redirectToDetailsPage(product.id);
+    });
+
+    // Agregar al carrito
     card.querySelector(".add-to-cart").addEventListener("click", () => {
         addToCart({
             id: product.id,
@@ -65,7 +73,54 @@ function createProductCard(product) {
             cantidad: 1
         });
     });
+
     return card;
+}
+
+// Redirigir a la página de detalles con el ID del producto
+function redirectToDetailsPage(productId) {
+    window.location.href = `product-detail-page.html?id=${productId}`;
+}
+
+// Renderizar detalles del producto en la página de detalles
+async function renderProductDetails() {
+    const productId = new URLSearchParams(window.location.search).get("id");
+    if (!productId) {
+        console.error("No se encontró un ID de producto en la URL.");
+        return;
+    }
+
+    try {
+        const response = await fetch(`${API_URL}/${productId}`);
+        if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+        const product = await response.json();
+
+        const container = document.querySelector(".product-container");
+        if (!container) return;
+
+        container.innerHTML = `
+            <div class="card mx-auto p-4" style="max-width: 600px;">
+                <img src="${product.image}" alt="${product.name}" class="card-img-top">
+                <div class="card-body">
+                    <h2 class="card-title">${product.name}</h2>
+                    <p><strong>Estado:</strong> ${product.status}</p>
+                    <p><strong>Especie:</strong> ${product.species}</p>
+                    <p><strong>Género:</strong> ${product.gender}</p>
+                    <p><strong>Origen:</strong> ${product.origin.name}</p>
+                    <button class="btn btn-secondary" onclick="addToCart({
+                        id: ${product.id},
+                        title: '${product.name}',
+                        image: '${product.image}',
+                        price: 1000,
+                        cantidad: 1
+                    })">Agregar al carrito</button>
+                </div>
+            </div>
+        `;
+    } catch (error) {
+        console.error("Error al cargar los detalles del producto:", error);
+        document.querySelector(".product-container").innerHTML = `<p class="text-danger">Error al cargar los detalles del producto.</p>`;
+    }
 }
 
 // Agregar al carrito
@@ -77,8 +132,8 @@ function addToCart(product) {
         carrito.push(product);
     }
     saveCart();
-    renderCart(); // Renderizar carrito después de agregar
-    updateCartTotal(); // Actualizar el total del carrito
+    renderCart();
+    updateCartTotal();
 }
 
 // Guardar carrito en localStorage
@@ -95,7 +150,7 @@ function updateCartTotal() {
     carritoTotal.textContent = `$${total.toFixed(2)}`;
 }
 
-// Renderizar carrito en la página
+// Renderizar carrito
 function renderCart() {
     const carritoContainer = document.querySelector("#carritoContainer");
     if (!carritoContainer) return;
@@ -131,45 +186,14 @@ function renderCart() {
         carritoContainer.appendChild(div);
     });
 
-    updateCartTotal(); // Actualizar total después de renderizar
+    updateCartTotal();
 }
 
-// Eliminar producto del carrito
+// Eliminar del carrito
 function removeFromCart(productId) {
     carrito = carrito.filter(item => item.id !== productId);
     saveCart();
     renderCart();
-}
-
-// Renderizar reseñas dinámicas
-function renderReviews() {
-    const carouselInner = document.querySelector("#reviewsCarousel .carousel-inner");
-    if (!carouselInner) return;
-
-    const reviewsData = [
-        { name: "Juan Pérez", review: "¡Increíble tienda! Los productos son de excelente calidad.", rating: 5 },
-        { name: "María López", review: "El servicio al cliente fue excepcional. Muy recomendado.", rating: 4 },
-        { name: "Carlos García", review: "Gran variedad de productos y precios competitivos.", rating: 4.5 },
-        { name: "Ana Rodríguez", review: "Rápida entrega y buen servicio. Volveré a comprar.", rating: 5 }
-    ];
-
-    let htmlContent = "";
-    reviewsData.forEach((review, index) => {
-        htmlContent += `
-        <div class="carousel-item ${index === 0 ? "active" : ""}">
-            <div class="card text-center p-4 shadow-sm mx-auto" style="max-width: 600px;">
-                <div class="card-body">
-                    <h5 class="card-title">${review.name}</h5>
-                    <p class="card-text">${review.review}</p>
-                    <p class="card-text">
-                        <small class="text-muted">Calificación: ${review.rating} ⭐</small>
-                    </p>
-                </div>
-            </div>
-        </div>`;
-    });
-
-    carouselInner.innerHTML = htmlContent;
 }
 
 // Inicializar la página
@@ -178,12 +202,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (path.includes("index.html")) {
         getCharacters();
-        renderReviews();
     } else if (path.includes("product-list-page.html")) {
         getCharacters();
-    } else if (path.includes("product-card-page.html")) {
-        const productId = new URLSearchParams(window.location.search).get("id");
-        if (productId) getProductDetails(productId);
+    } else if (path.includes("product-detail-page.html")) {
+        renderProductDetails();
     } else if (path.includes("cart.html")) {
         renderCart();
     }
