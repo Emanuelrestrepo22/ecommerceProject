@@ -1,0 +1,6 @@
+[
+    { "name": "Juan Pérez", "review": "¡Increíble tienda! Los productos son de excelente calidad.", "rating": 5 },
+    { "name": "María López", "review": "El servicio al cliente fue excepcional. Muy recomendado.", "rating": 4 },
+    { "name": "Carlos García", "review": "Gran variedad de productos y precios competitivos.", "rating": 4.5 },
+    { "name": "Ana Rodríguez", "review": "Rápida entrega y buen servicio. Volveré a comprar.", "rating": 5 }
+]

@@ -17,27 +17,24 @@
 
 </head>
 <body>
-    <header>
-        <h1 class="title">Rick and Morty Store</h1>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="index.html">Tienda Online</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="product-list-page.html">Productos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="cart.html">Carrito</a></li>
-                        <li class="nav-item"><a class="nav-link" href="review.html">Reseñas</a></li>
-                        <li class="nav-item"><a class="nav-link" href="form.html">Contacto</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        
+    <header class="main-header">
+        <div class="container flex-container">
+            <a href="index.html" class="logo">Rick and Morty Store</a>
+            <nav class="main-nav">
+                <ul class="nav-list flex-container">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="product-list-page.html">Productos</a></li>
+                    <li><a href="cart.html">Carrito</a></li>
+                    <li><a href="review.html">Reseñas</a></li>
+                    <li><a href="form.html">Contacto</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" aria-label="Abrir menú">
+                <span class="menu-icon"></span>
+            </button>
+        </div>
     </header>
+    
     
     
 
@@ -53,6 +50,6 @@
         <p>&copy; 2023 rick and Morty Store</p>
     </footer>
 
-    <script src="card.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>

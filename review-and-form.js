@@ -1,13 +1,17 @@
-// Reseñas simuladas (puedes reemplazar esto con datos de un API)
-const reviewsData = [
-    { name: "Juan Pérez", review: "¡Increíble tienda! Los productos son de excelente calidad.", rating: 5 },
-    { name: "María López", review: "El servicio al cliente fue excepcional. Muy recomendado.", rating: 4 },
-    { name: "Carlos García", review: "Gran variedad de productos y precios competitivos.", rating: 4.5 },
-    { name: "Ana Rodríguez", review: "Rápida entrega y buen servicio. Volveré a comprar.", rating: 5 }
-];
+// Cargar reseñas desde un archivo JSON
+async function fetchReviews() {
+    try {
+        const response = await fetch("reviews.json");
+        if (!response.ok) throw new Error(`Error al cargar las reseñas: ${response.status}`);
+        const reviewsData = await response.json();
+        renderReviews(reviewsData);
+    } catch (error) {
+        console.error("Error al cargar las reseñas:", error);
+    }
+}
 
 // Función para renderizar las reseñas en el carrusel
-function renderReviews() {
+function renderReviews(reviewsData) {
     const carouselInner = document.querySelector("#reviewsCarousel .carousel-inner");
 
     if (!carouselInner) return;
@@ -32,7 +36,7 @@ function renderReviews() {
 }
 
 // Llamar a la función para cargar las reseñas
-renderReviews();
+document.addEventListener("DOMContentLoaded", fetchReviews);
 
 
 function validateContactForm() {
