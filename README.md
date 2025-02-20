@@ -1,82 +1,43 @@
+# 🛍️ Rick and Morty Store - E-commerce Project
 
+## 📜 Description | Descripción
+**English**  
+The **Rick and Morty Store** is a dynamic and fully responsive e-commerce application developed using **HTML, CSS, JavaScript, and Bootstrap**. This store **integrates the Rick and Morty API** to display characters as products, allowing users to browse, add products to a shopping cart, and interact dynamically.  
 
-📜 Description
-The Rick and Morty Store is a dynamic, responsive, and fully functional e-commerce application built using HTML, CSS, JavaScript, and Bootstrap. This store leverages the Rick and Morty API to showcase characters as products, allowing users to explore, add products to a cart, and complete their shopping experience interactively.
+This project demonstrates modern **web development best practices**, focusing on **responsive design**, **dynamic content rendering**, and **interactive features** like a **shopping cart, product detail pages, and a contact form**.
 
-This project demonstrates best practices in modern web development, focusing on responsive design, dynamic rendering of data, and interactive functionalities such as a shopping cart and a contact form.
+**Español**  
+La **Tienda de Rick and Morty** es una aplicación de comercio electrónico dinámica y completamente responsiva, desarrollada con **HTML, CSS, JavaScript y Bootstrap**. Esta tienda **integra la API de Rick and Morty** para mostrar personajes como productos, permitiendo a los usuarios explorar, agregar productos al carrito de compras e interactuar dinámicamente.  
 
-🌟 Features
-Dynamic Product Rendering: Fetches character data from the API and dynamically displays it on the store.
-Featured Products Section: Highlights top characters on the homepage.
-Product Detail Page: Shows detailed information about each product when selected.
-Shopping Cart:
-Add, remove, or update product quantities.
-Displays the total price dynamically.
-Persists data using localStorage.
-Responsive Design:
-Built with Flexbox and CSS Grid for layout.
-Fully responsive across all screen sizes.
-Interactive Contact Form:
-Validates inputs and provides console feedback.
-Styled for a modern user experience.
-Dynamic Reviews Section: Rotates user reviews in a Bootstrap carousel.
-Custom Navbar:
-Created with Flexbox.
-Responsive behavior for desktop and mobile.
-🛠️ Tools and Technologies
-Frontend Frameworks and Libraries:
-HTML5 and CSS3 for structure and styling.
-Bootstrap for responsive design components.
-JavaScript:
-Fetch API for consuming the Rick and Morty API.
-DOM manipulation for rendering dynamic content.
-localStorage for cart persistence.
-API Integration:
-Rick and Morty API to fetch product data.
-GitHub Hosting:
-Deployed using GitHub Pages for seamless access.
+Este proyecto demuestra **buenas prácticas de desarrollo web moderno**, centrándose en el **diseño responsivo**, la **renderización dinámica de contenido** y **funcionalidades interactivas** como un **carrito de compras, páginas de detalles de productos y un formulario de contacto**.
 
+🔗 **Public API Used:** [Rick and Morty API](https://rickandmortyapi.com/)  
+🔗 **Live Demo:** [GitHub Pages Deployment](https://emanuelrestrepo22.github.io/ecommerceProject/)  
+🔗 **GitHub Repository:** [Clone this Project](https://github.com/emanuelrestrepo22/ecommerceProject.git)
 
-project-directory/
-│
-├── index.html                # Homepage
-├── product-list-page.html    # Product listing page
-├── product-detail-page.html  # Product detail page
-├── cart.html                 # Shopping cart page
-├── form.html                 # Contact form page
-├── review.html               # Reviews page
-│
-├── css/
-│   ├── styles.css            # Main CSS file
-│
-├── js/
-│   ├── index.js              # Main JavaScript logic
-│
-├── images/                   # Image assets
-│
-├── README.md                 # Project documentation
-└── LICENSE                   # Licensing information
+---
 
+## 🌟 Features | Funcionalidades
+✅ **Dynamic Product Display** - Fetches data from the API and renders character cards dynamically.  
+✅ **Product Detail Pages** - Individual pages for each character with in-depth information.  
+✅ **Shopping Cart**  
+   - Add, remove, and update product quantities.  
+   - Total price calculation in real-time.  
+   - Uses **localStorage** to persist cart data.  
+✅ **Featured Products Section** - Displays the top five characters on the homepage.  
+✅ **Responsive Design** - Built with **Flexbox & CSS Grid** to adapt to all screen sizes.  
+✅ **Interactive Contact Form** - Validates user inputs before submission.  
+✅ **Dynamic Review Section** - Showcases customer feedback in a **Bootstrap carousel**.  
+✅ **Custom Navbar** - Developed using **Flexbox**, supporting **mobile navigation**.  
 
+---
 
- Future Maintenance
-Code Modularity:
-Ensure JavaScript logic for features such as the cart, form validation, and rendering is kept modular for scalability.
-Testing:
-Implement unit tests for form validation and cart functionalities using frameworks like Jest.
-Performance Optimization:
-Minimize API calls and implement lazy loading for images.
-Accessibility:
-Enhance ARIA roles and improve keyboard navigation for usability.
+## 🛠️ Technologies Used | Tecnologías Utilizadas
+- **Frontend:** HTML5, CSS3, JavaScript (ES6), Bootstrap  
+- **API Integration:** Fetch API with [Rick and Morty API](https://rickandmortyapi.com/)  
+- **State Management:** localStorage for shopping cart persistence  
+- **Hosting:** GitHub Pages  
 
-🚀 How to Run Locally
-Clone the repository:
-bash
-Copiar código
-git clone https://github.com/your-username/rick-and-morty-store.git
-cd rick-and-morty-store
+---
 
-Open index.html in your browser or use a live server for local development.
-💡 Acknowledgments
-Rick and Morty API for providing the character data.
-Bootstrap for responsive components.
+## 📂 Project Structure | Estructura del Proyecto
