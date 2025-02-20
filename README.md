@@ -42,7 +42,31 @@ Este proyecto demuestra **buenas prácticas de desarrollo web moderno**, centrá
 
 ## 📂 Project Structure | Estructura del Proyecto
 
-project-directory/ │ ├── index.html # Homepage ├── product-list-page.html # Product listing page ├── product-detail-page.html # Product detail page ├── cart.html # Shopping cart page ├── form.html # Contact form page ├── review.html # Reviews page │ ├── css/ │ ├── styles.css # Main CSS file │ ├── js/ │ ├── index.js # Main JavaScript logic │ ├── images/ # Image assets │ ├── README.md # Project documentation └── LICENSE # Licensing information
+ecommerceProject/
+│
+├── index.html                # Página principal (Home)
+├── product-list-page.html    # Página con la lista de productos
+├── product-detail-page.html  # Página con el detalle de cada producto
+├── cart.html                 # Página del carrito de compras
+├── form.html                 # Página de contacto
+├── review.html               # Página de reseñas
+│
+├── css/                      # Carpeta para archivos de estilos
+│   ├── styles.css            # Archivo principal de estilos
+│
+├── js/                       # Carpeta para archivos JavaScript
+│   ├── index.js              # Archivo principal de lógica JS
+│
+├── images/                   # Carpeta para imágenes del proyecto
+│
+├── assets/                   # Carpeta opcional para fuentes o iconos
+│   ├── fonts/                # Carpeta para fuentes personalizadas (si aplica)
+│   ├── icons/                # Carpeta para íconos (si aplica)
+│
+├── README.md                 # Documentación del proyecto
+├── LICENSE                   # Archivo de licencia
+└── .gitignore                # Archivos a ignorar en Git
+
 
 ---
 
