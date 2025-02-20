@@ -41,3 +41,8 @@ Este proyecto demuestra **buenas prácticas de desarrollo web moderno**, centrá
 ---
 
 ## 📂 Project Structure | Estructura del Proyecto
+
+project-directory/ │ ├── index.html # Homepage ├── product-list-page.html # Product listing page ├── product-detail-page.html # Product detail page ├── cart.html # Shopping cart page ├── form.html # Contact form page ├── review.html # Reviews page │ ├── css/ │ ├── styles.css # Main CSS file │ ├── js/ │ ├── index.js # Main JavaScript logic │ ├── images/ # Image assets │ ├── README.md # Project documentation └── LICENSE # Licensing information
+
+---
+
