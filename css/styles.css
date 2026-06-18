@@ -1,374 +1,198 @@
-/* styles.css */
-/* Importación de fuentes de Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap');
+/* ============================================================
+   styles.css — Rick and Morty Store
+   Hoja de estilos unificada. Vanilla CSS + utilidades Bootstrap 5.3.
+   No requiere build step. Funciona abriendo los .html con rutas
+   relativas. La lógica JS (IDs/clases) NO se modifica desde aquí.
+   ============================================================ */
 
+/* Fuentes (se mantienen las ya presentes vía CDN/Google Fonts) */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Playfair+Display:wght@700&display=swap');
 
-
-
-/* Variables de color para fácil referencia */
-
+/* ------------------------------------------------------------
+   1. Tokens de diseño
+   - Paleta de marca: se conserva exactamente la original.
+   - Se agregan tokens de espaciado, radios, sombras y foco para
+     dar consistencia sin alterar los colores.
+   ------------------------------------------------------------ */
 :root {
+    /* Paleta de marca (sin cambios) */
     --color-primario: #a93545;
     --color-secundario: #f2d5d9;
     --color-oscuro: #581828;
     --color-resaltado: #ffb5c2;
     --color-neutro: #f9f6f7;
+
+    /* Derivados para estados (no son colores nuevos de marca, son
+       variaciones de los existentes para hover/focus) */
+    --color-primario-hover: #8f2a38;
+    --color-superficie: #ffffff;
+    --color-borde: #e7d6da;
+    --color-texto-suave: #6b4a52;
+
+    /* Tipografía */
+    --fuente-base: 'Roboto', system-ui, sans-serif;
+    --fuente-titulo: 'Playfair Display', Georgia, serif;
+
+    /* Escala de espaciado */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2.5rem;
+
+    /* Radios y sombras */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --shadow-sm: 0 1px 3px rgba(88, 24, 40, 0.08);
+    --shadow-md: 0 6px 18px rgba(88, 24, 40, 0.12);
+    --shadow-lg: 0 12px 28px rgba(88, 24, 40, 0.18);
+
+    /* Transiciones y foco accesible */
+    --transition: 0.2s ease;
+    --focus-ring: 0 0 0 3px rgba(169, 53, 69, 0.45);
 }
 
-/* Estilos generales */
-/* Aplicando Google Font */
+/* ------------------------------------------------------------
+   2. Base
+   ------------------------------------------------------------ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: "Roboto", sans-serif;
+    font-family: var(--fuente-base);
     font-weight: 400;
-    font-style: normal;
-    font-family: 'Roboto', sans-serif;
     background-color: var(--color-neutro);
     color: var(--color-oscuro);
     margin: 0;
     padding: 0;
+    line-height: 1.6;
+    /* Empuja el footer al fondo aunque haya poco contenido */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-/* titulos */
-.navbar-brand{
-    font-family: "Roboto", sans-serif;
-    font-weight: 900;
-    font-style: italic;
+main {
+    flex: 1 0 auto;
 }
 
-.title2{
-    font-family: "Roboto", sans-serif;
+img {
+    max-width: 100%;
+}
+
+/* Foco visible global (accesibilidad) para todo lo interactivo */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+.btn:focus-visible,
+.nav-list a:focus-visible {
+    outline: 2px solid transparent;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+}
+
+/* ------------------------------------------------------------
+   3. Tipografía y jerarquía
+   ------------------------------------------------------------ */
+h1, h2, h3, h4 {
+    line-height: 1.25;
+    color: var(--color-oscuro);
+}
+
+/* Título de sección (clase usada en index.html) */
+.title2 {
+    font-family: var(--fuente-base);
     font-weight: 700;
-    font-style: normal;
-}
-
-
-
-/* Estilos para la Sección de Productos */
-.productosContainer {
-    display: grid; /* Activar CSS Grid */
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Diseño fluido */
-    gap: 1rem; /* Espaciado entre los productos */
-    padding: 2rem;
-    justify-items: center; /* Centra los elementos horizontalmente */
-}
-
-
-.card {
-    background-color: var(--color-neutro);
-    color: var(--color-oscuro);
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
     text-align: center;
-    transition: transform 0.2s ease-in-out;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    width: 100%; /* Asegura que se ajusten a la celda */
+    margin: var(--space-xl) 0 var(--space-lg);
+    position: relative;
 }
 
-.card:hover {
-    transform: scale(1.05);
-    background-color: var(--color-resaltado);
-}
-
-.card-imagen {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-    max-height: 150px;
-    object-fit: cover;
-    margin-bottom: 0.5rem;
-}
-
-/* Sección de Reseñas */
-.reseñas-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
-}
-
-.reseña {
-    background-color: var(--color-neutro);
-    color: var(--color-oscuro);
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-
-/* Estilos de la card */
-.card {
-    background-color: var(--color-neutro); /* Color de fondo de la tarjeta */
-    color: var(--color-oscuro); /* Color del texto */
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.2s ease-in-out;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.card:hover {
-    transform: scale(1.05);
-    background-color: var(--color-resaltado);
-}
-
-/* Imagen del producto */
-.card-imagen {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-    max-height: 150px;
-    object-fit: cover; /* Recorta la imagen sin perder proporciones */
-    margin-bottom: 0.5rem;
-}
-
-/* Título del producto */
-.card-titulo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-    color: var(--color-primario);
-    margin: 0.5rem 0;
-}
-
-/* Descripción del producto */
-.card-descripcion {
-    font-size: 0.9rem;
-    color: var(--color-oscuro);
-    margin: 0.5rem 0;
-}
-
-/* Precio del producto */
-.card-precio {
-    font-size: 1rem;
-    font-weight: bold;
-    color: var(--color-oscuro);
-    margin: 0.5rem 0;
-}
-
-/* Botón de acción en la tarjeta */
-.card-boton {
-    padding: 0.5rem 1rem;
+/* Subrayado decorativo de los títulos de sección */
+.title2::after {
+    content: "";
+    display: block;
+    width: 64px;
+    height: 4px;
+    margin: var(--space-sm) auto 0;
     background-color: var(--color-primario);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    border-radius: 999px;
 }
 
-.card-boton:hover {
-    background-color: var(--color-oscuro);
+/* Encabezado de secciones con <h2> directo (product-list, cart) */
+#productos > h2,
+#carrito > h2 {
+    font-weight: 700;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
 }
 
-/* Estilos para el Formulario de Contacto */
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-input, textarea {
-    margin-bottom: 1rem;
-    padding: 0.5rem;
-    border-radius: 5px;
-    border: 1px solid var(--color-primario);
-}
-
-button {
-    padding: 0.5rem;
-    background-color: var(--color-primario);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-button:hover {
-    background-color: var(--color-oscuro);
-}
-
-/* Estilos para el Footer */
-footer {
-    background-color: #900C3F;
-    color: var(--color-neutro);
-    text-align: center;
-    padding: 1rem;
-    font-size: 0.9rem;
-}
-
-
-/* estilos para nuestro product list page*/
-/* Header styles */
-.header {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-}
-.header nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 10px;
-    font-size: 18px;
-}
-.header nav a:hover {
-    text-decoration: underline;
-}
-
-
-
-/* Diseño Responsivo */
-@media (max-width: 768px) {
-    .productos-container {
-        flex-direction: column;
-    }
-
-    .reseñas-container {
-        grid-template-columns: 1fr;
-    }
-
-    nav ul {
-        flex-direction: column;
-    }
-}
-
-
-
-@media (max-width: 768px) {
-    .productosContainer {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Más pequeñas en móviles */
-        gap: 0.5rem; /* Menor espaciado */
-    }
-
-    .card {
-        background-color: white;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        overflow: hidden;
-        padding: 1rem;
-        text-align: center;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-}
-
-.card img {
-    width: 100%;
-    height: auto;
-    max-height: 150px;
-    object-fit: cover;
-    margin-bottom: 1rem;
-}
-
-.card h3 {
-    font-size: 1.2rem;
-    margin: 0.5rem 0;
-}
-
-.card p {
-    margin: 0.5rem 0;
-    color: #555;
-}
-
-.card-boton {
-    padding: 0.5rem 1rem;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.card-boton:hover {
-    background-color: #900C3F;
-}
-
-/* Cart Styles */
-.cart-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-}
-
-.cart-item img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-.cart-item h4 {
-    margin: 0;
-    flex: 1;
-}
-
-.cart-item button {
-    padding: 0.3rem 0.6rem;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.cart-item button:hover {
-    background-color: #a71d2a;
-}
-
-
-/* ajusto responsivo carrusel*/
-.carousel-inner img {
-    object-fit: cover; /* Recorta las imágenes manteniendo sus proporciones */
-    height: 400px; /* Altura fija para las imágenes */
-}
-
-
-/* premisa para navbar con flexbox
-/* General Navbar Styles */
+/* ------------------------------------------------------------
+   4. Header / Navbar
+   - El layout flex se ESCOPEA a .main-header .container para no
+     romper el .container de Bootstrap en review.html y form.html.
+   ------------------------------------------------------------ */
 .main-header {
-    background-color: #900C3F;
-    padding: 1rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background-color: var(--color-primario);
+    padding: var(--space-md) var(--space-lg);
+    box-shadow: var(--shadow-md);
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
-.container {
+.main-header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: var(--space-md);
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .logo {
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--fuente-base);
     font-size: 1.5rem;
-    font-weight: bold;
-    color: white;
+    font-weight: 900;
+    font-style: italic;
+    color: #fff;
     text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: opacity var(--transition);
+}
+
+.logo:hover {
+    opacity: 0.85;
 }
 
 .menu-toggle {
     display: none;
     background: none;
     border: none;
-    color: white;
-    font-size: 1.5rem;
+    color: #fff;
+    font-size: 1.6rem;
+    line-height: 1;
     cursor: pointer;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    width: auto;
+    transition: background-color var(--transition);
+}
+
+.menu-toggle:hover {
+    background-color: var(--color-primario-hover);
 }
 
 .main-nav {
     display: flex;
     flex-direction: row;
-    gap: 1rem;
+    gap: var(--space-md);
 }
 
 .nav-list {
@@ -376,24 +200,425 @@ footer {
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 1rem;
+    gap: var(--space-sm);
 }
 
 .nav-list a {
-    color: white;
+    color: #fff;
     text-decoration: none;
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: 600;
     padding: 0.5rem 1rem;
-    transition: background-color 0.3s;
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition);
 }
 
 .nav-list a:hover {
-    background-color: #581828;
-    border-radius: 5px;
+    background-color: var(--color-oscuro);
 }
 
-/* Mobile Styles */
+/* ------------------------------------------------------------
+   5. Carrusel (index.html)
+   ------------------------------------------------------------ */
+.carousel {
+    max-width: 1200px;
+    margin: var(--space-lg) auto 0;
+}
+
+.carousel-inner {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.carousel-inner img {
+    object-fit: cover;
+    height: 420px;
+}
+
+.carousel-caption {
+    background: rgba(88, 24, 40, 0.55);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-md);
+}
+
+@media (max-width: 768px) {
+    .carousel-inner img {
+        height: 240px;
+    }
+}
+
+/* ------------------------------------------------------------
+   6. Grilla de productos + Cards
+   - El JS genera: .card > img + h3 + p + button.btn.
+     Se estiliza ese markup real (no clases inexistentes).
+   ------------------------------------------------------------ */
+.productosContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background-color: var(--color-superficie);
+    color: var(--color-oscuro);
+    padding: var(--space-md);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    width: 100%;
+    overflow: hidden;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Imagen dentro de las cards generadas por JS */
+.card img,
+.card-imagen {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-sm);
+}
+
+/* Título del producto (h3 generado por JS) */
+.card h3,
+.card-titulo {
+    font-family: var(--fuente-titulo);
+    font-size: 1.2rem;
+    color: var(--color-primario);
+    margin: var(--space-xs) 0;
+}
+
+/* Textos del producto (p generado por JS) */
+.card p,
+.card-descripcion,
+.card-precio {
+    font-size: 0.95rem;
+    color: var(--color-texto-suave);
+    margin: 0;
+}
+
+/* Los botones quedan al pie de la card, alineados */
+.card .btn,
+.card .card-boton {
+    width: 100%;
+    margin-top: auto;
+}
+
+.card .btn + .btn {
+    margin-top: var(--space-sm);
+}
+
+/* ------------------------------------------------------------
+   7. Botones
+   - Se reutiliza .btn-danger de Bootstrap (usado por el JS) y se
+     alinea a la paleta de marca para coherencia visual.
+   ------------------------------------------------------------ */
+.btn {
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+/* Botón primario de marca (mapeado sobre .btn-danger del JS) */
+.btn-danger {
+    --bs-btn-bg: var(--color-primario);
+    --bs-btn-border-color: var(--color-primario);
+    --bs-btn-hover-bg: var(--color-primario-hover);
+    --bs-btn-hover-border-color: var(--color-primario-hover);
+    --bs-btn-active-bg: var(--color-oscuro);
+    --bs-btn-active-border-color: var(--color-oscuro);
+    background-color: var(--color-primario);
+    border-color: var(--color-primario);
+}
+
+.btn-danger:hover {
+    background-color: var(--color-primario-hover);
+    border-color: var(--color-primario-hover);
+}
+
+/* Botón legacy no-Bootstrap (.card-boton) por si se usa en otra vista */
+.card-boton {
+    padding: 0.55rem 1rem;
+    background-color: var(--color-primario);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background-color var(--transition);
+}
+
+.card-boton:hover {
+    background-color: var(--color-primario-hover);
+}
+
+/* ------------------------------------------------------------
+   8. Página de detalle de producto (.product-container generado por JS)
+   ------------------------------------------------------------ */
+#product-details {
+    padding: var(--space-xl) var(--space-md);
+}
+
+.product-container .card {
+    text-align: left;
+    box-shadow: var(--shadow-md);
+}
+
+.product-container .card-img-top {
+    height: 320px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+}
+
+.product-container .card-title {
+    font-family: var(--fuente-titulo);
+    color: var(--color-primario);
+}
+
+/* ------------------------------------------------------------
+   9. Carrito
+   - cart.html carga index.js, que genera markup Bootstrap
+     (col-md-6 > .card.h-100 > .row.g-0). Se le da contenedor.
+   ------------------------------------------------------------ */
+#carrito {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: var(--space-md) var(--space-lg) var(--space-xl);
+}
+
+#carritoContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+}
+
+#carritoContainer .col-md-6 {
+    flex: 1 1 320px;
+}
+
+#carritoContainer .card-img-top,
+#carritoContainer img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.cart-summary {
+    margin-top: var(--space-lg);
+    padding: var(--space-lg);
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    text-align: right;
+}
+
+.cart-summary h4 {
+    margin: 0;
+    font-weight: 700;
+}
+
+/* Estilos legacy de .cart-item (por compatibilidad con cart.js) */
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+    padding: var(--space-md);
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radius-md);
+}
+
+.cart-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+}
+
+.cart-item h4 {
+    margin: 0;
+    flex: 1;
+}
+
+/* ------------------------------------------------------------
+   10. Formularios (form.html #contactForm y review-form)
+   ------------------------------------------------------------ */
+#contactForm,
+.review-form {
+    background-color: var(--color-superficie);
+    padding: var(--space-xl);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+/* Encabezado de la página de contacto (es hermano de #contactForm) */
+.container h1,
+#contactForm h1 {
+    font-family: var(--fuente-base);
+    font-size: clamp(1.8rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: var(--color-primario);
+    margin-bottom: var(--space-lg);
+}
+
+.form-label,
+#contactForm label {
+    font-weight: 600;
+    color: var(--color-oscuro);
+    margin-bottom: var(--space-xs);
+}
+
+/* Inputs (Bootstrap .form-control y campos planos) */
+.form-control,
+#contactForm input,
+#contactForm textarea,
+.review-form input,
+.review-form textarea {
+    width: 100%;
+    padding: 0.65rem 0.75rem;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    color: var(--color-oscuro);
+    background-color: #fff;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.form-control:focus,
+#contactForm input:focus,
+#contactForm textarea:focus,
+.review-form input:focus,
+.review-form textarea:focus {
+    border-color: var(--color-primario);
+    box-shadow: var(--focus-ring);
+    outline: none;
+}
+
+.form-text,
+#emailHelp {
+    font-size: 0.85rem;
+    color: var(--color-texto-suave);
+}
+
+#contactForm .btn,
+.review-form .btn {
+    width: 100%;
+    padding: 0.7rem;
+    font-size: 1.05rem;
+}
+
+/* ------------------------------------------------------------
+   11. Reseñas (review.html)
+   - NO se tocan IDs/clases que usa el JS. El widget de estrellas
+     mantiene .star y .active.
+   ------------------------------------------------------------ */
+#statusBox {
+    font-weight: 600;
+}
+
+/* Widget de estrellas interactivo */
+.star-rating {
+    display: inline-flex;
+    flex-direction: row;
+    gap: 0.15rem;
+}
+
+.star-rating .star {
+    background: none;
+    border: none;
+    padding: 0 0.1rem;
+    font-size: 2.2rem;
+    line-height: 1;
+    color: #d0d0d0;            /* gris por defecto */
+    cursor: pointer;
+    width: auto;
+    transition: color 0.15s ease, transform 0.1s ease;
+}
+
+.star-rating .star:hover {
+    transform: scale(1.15);
+    background: none;
+}
+
+.star-rating .star.active {
+    color: #ffc107;            /* dorado al hover/click */
+}
+
+.star-rating .star:focus-visible {
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+}
+
+/* Tarjetas de reseña publicadas */
+.review-card {
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.review-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-sm);
+}
+
+.review-rating {
+    font-size: 0.9rem;
+    color: var(--color-primario);
+}
+
+.review-text {
+    margin: 0 0 var(--space-md) 0;
+    color: var(--color-oscuro);
+}
+
+/* ------------------------------------------------------------
+   12. Footer
+   ------------------------------------------------------------ */
+footer {
+    flex-shrink: 0;
+    background-color: var(--color-oscuro);
+    color: var(--color-neutro);
+    text-align: center;
+    padding: var(--space-lg) var(--space-md);
+    font-size: 0.9rem;
+    margin-top: var(--space-xl);
+}
+
+footer p {
+    margin: 0;
+}
+
+/* ------------------------------------------------------------
+   13. Responsive
+   ------------------------------------------------------------ */
 @media (max-width: 768px) {
     .menu-toggle {
         display: block;
@@ -406,9 +631,9 @@ footer {
         top: 100%;
         left: 0;
         right: 0;
-        background-color: #900C3F;
-        padding: 1rem;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        background-color: var(--color-primario);
+        padding: var(--space-md);
+        box-shadow: var(--shadow-md);
     }
 
     .main-nav.active {
@@ -417,101 +642,33 @@ footer {
 
     .nav-list {
         flex-direction: column;
-        gap: 0.5rem;
+        gap: var(--space-sm);
     }
 
     .nav-list a {
         text-align: center;
+        display: block;
+    }
+
+    .productosContainer {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: var(--space-md);
+        padding: var(--space-md);
+    }
+
+    .card img,
+    .card-imagen {
+        height: 160px;
+    }
+
+    #contactForm,
+    .review-form {
+        padding: var(--space-lg);
     }
 }
 
-
-
-/* Estilos generales del formulario */
-#contactForm {
-    background-color: #f9f9f9; /* Fondo suave */
-    padding: 2rem; /* Espaciado interno */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-    max-width: 600px; /* Ancho máximo */
-    margin: 0 auto; /* Centrar el formulario */
+@media (max-width: 480px) {
+    .productosContainer {
+        grid-template-columns: 1fr;
+    }
 }
-
-/* Títulos y etiquetas */
-#contactForm h1 {
-    font-family: "Roboto", sans-serif;
-    font-size: 2rem;
-    font-weight: 700;
-    text-align: center;
-    color: var(--color-primario);
-}
-
-#contactForm label {
-    font-family: "Roboto", sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--color-oscuro);
-    margin-bottom: 0.5rem;
-    display: block; /* Asegura que las etiquetas estén sobre los inputs */
-}
-
-/* Campos del formulario */
-#contactForm input,
-#contactForm textarea {
-    width: 100%; /* Ocupa todo el ancho del contenedor */
-    padding: 0.75rem; /* Espaciado interno */
-    border: 1px solid var(--color-primario); /* Borde con el color principal */
-    border-radius: 5px; /* Bordes redondeados */
-    font-size: 1rem;
-    color: var(--color-oscuro);
-    margin-bottom: 1rem; /* Espaciado entre campos */
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra interna */
-    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Animación en foco */
-}
-
-#contactForm input:focus,
-#contactForm textarea:focus {
-    border-color: var(--color-secundario); /* Cambio de color en foco */
-    box-shadow: 0 0 5px rgba(169, 53, 69, 0.5); /* Sombra sutil en foco */
-    outline: none; /* Elimina el contorno predeterminado */
-}
-
-/* Mensaje de ayuda */
-#emailHelp {
-    font-size: 0.9rem;
-    color: var(--color-oscuro);
-    margin-bottom: 1rem;
-}
-
-/* Botón de envío */
-#contactForm button {
-    width: 100%; /* Botón ancho completo */
-    padding: 0.75rem;
-    background-color: var(--color-primario); /* Color principal */
-    color: white; /* Texto blanco */
-    border: none; /* Sin bordes */
-    border-radius: 5px; /* Bordes redondeados */
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    transition: background-color 0.3s ease; /* Animación suave */
-}
-
-#contactForm button:hover {
-    background-color: var(--color-oscuro); /* Cambio de color al pasar el mouse */
-}
-
-/* Contenedor principal */
-.container {
-    padding: 1rem;
-}
-
-/* Título principal del formulario */
-.container h1 {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700;
-    font-size: 2rem;
-    color: var(--color-primario);
-    margin-bottom: 1rem;
-}
-

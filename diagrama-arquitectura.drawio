@@ -1,0 +1,85 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram name="Arquitectura Serverless" id="arch-1">
+    <mxGraphModel dx="900" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="Rick and Morty Store — Arquitectura Serverless (AWS)" style="text;html=1;fontSize=16;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="120" y="20" width="560" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="user" value="Usuario (Navegador)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="320" y="70" width="200" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cf" value="CloudFront&#10;(HTTPS + CDN)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="320" y="170" width="200" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s3" value="S3 (bucket privado)&#10;Frontend HTML/CSS/JS&#10;restrepo-ecommerce-frontend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="580" y="170" width="220" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="apigw" value="API Gateway (HTTP API)&#10;GET / POST / DELETE /reviews" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="310" y="290" width="220" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lambda" value="Lambda (Python + boto3)&#10;restrepo-review-api&#10;enruta y opera el CRUD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="310" y="410" width="220" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ddb" value="DynamoDB&#10;tabla restrepo-review&#10;(PK: id)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="340" y="530" width="160" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="iam" value="IAM Role&#10;lab-lambda-exec&#10;(permisos DynamoDB)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="580" y="410" width="200" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" style="endArrow=classic;html=1;" edge="1" parent="1" source="user" target="cf">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e1l" value="HTTPS" style="text;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="430" y="135" width="60" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e2" style="endArrow=classic;html=1;startArrow=none;" edge="1" parent="1" source="cf" target="s3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2l" value="OAC (bucket privado)" style="text;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="520" y="150" width="140" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e3" style="endArrow=classic;html=1;" edge="1" parent="1" source="cf" target="apigw">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3l" value="fetch() JSON" style="text;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="420" y="255" width="90" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e4" style="endArrow=classic;html=1;" edge="1" parent="1" source="apigw" target="lambda">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4l" value="invoca" style="text;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="430" y="375" width="60" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e5" style="endArrow=classic;startArrow=classic;html=1;" edge="1" parent="1" source="lambda" target="ddb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5l" value="read / write" style="text;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="420" y="490" width="80" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e6" style="endArrow=none;html=1;dashed=1;" edge="1" parent="1" source="lambda" target="iam">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6l" value="asume rol" style="text;html=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="540" y="425" width="60" height="20" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

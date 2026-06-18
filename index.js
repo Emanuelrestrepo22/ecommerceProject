@@ -54,10 +54,10 @@ async function getCharactersWithLogging() {
         if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
         const data = await response.json();
         if (document.querySelector("#productosContainer")) {
-            renderProductList(data);
+            renderProductList(data.results);
         }
         if (document.querySelector("#productosDestacados")) {
-            renderFeaturedProducts(data);
+            renderFeaturedProducts(data.results);
         }
         logProductsToConsole(data); // Imprimir productos en la consola
     } catch (error) {

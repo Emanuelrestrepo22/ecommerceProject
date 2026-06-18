@@ -1,2 +1,4 @@
 .git
-README.md
+dist/
+node_modules/
+playwright/.auth/
