@@ -60,6 +60,7 @@ function addToCart(product) {
 // Guardar carrito en localStorage
 function saveCart() {
     localStorage.setItem("carrito", JSON.stringify(carrito));
+    window.dispatchEvent(new Event("cart:updated"));
 }
 
 // Renderizar carrito

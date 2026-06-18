@@ -218,6 +218,57 @@ h1, h2, h3, h4 {
 }
 
 /* ------------------------------------------------------------
+   4.1 Badge del carrito (contador en el navbar)
+   - El JS (cart-badge.js) inyecta dentro de <a href="cart.html">:
+     .cart-icon (🛒) + .cart-link-text + .cart-badge (burbuja).
+   - El link se vuelve relativo para anclar la burbuja arriba-dcha.
+   ------------------------------------------------------------ */
+.nav-list a.cart-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.cart-icon {
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+/* Burbuja contadora pegada arriba-derecha del ícono */
+.cart-badge {
+    position: absolute;
+    top: -2px;
+    right: -4px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 999px;
+    background-color: var(--color-resaltado);
+    color: var(--color-oscuro);
+    border: 2px solid var(--color-primario);
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 14px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    pointer-events: none;
+}
+
+/* [hidden] ya oculta por defecto, pero forzamos por si el reset CSS
+   de Bootstrap reasigna display a inline-flex en algún caso. */
+.cart-badge[hidden] {
+    display: none;
+}
+
+/* En móvil el navbar es vertical: la burbuja sigue anclada al ícono */
+@media (max-width: 768px) {
+    .nav-list a.cart-link {
+        justify-content: center;
+    }
+}
+
+/* ------------------------------------------------------------
    5. Carrusel (index.html)
    ------------------------------------------------------------ */
 .carousel {

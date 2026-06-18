@@ -32,3 +32,16 @@ API_URL=https://xxxx.execute-api.us-east-1.amazonaws.com bash tests/api-smoke.sh
 **Cobertura:** CREATE, READ, DELETE + validación de input + ruteo. Persistencia verificada cruzando contra DynamoDB.
 **Fuera de alcance:** UPDATE (no requerido por la consigna), auth (la API es pública por diseño del TP), carga/concurrencia.
 **Última ejecución:** 8 PASS / 0 FAIL.
+
+---
+
+## Casos de prueba manuales — Contador de carrito (client-side)
+
+Feature del lado del cliente (localStorage, sin API), por eso son **manuales** (no automatizables con la suite de API). Ver Anexo B (capítulo 20) del documento funcional.
+
+| TC ID | Tipo | Pasos | Resultado esperado |
+|-------|------|-------|--------------------|
+| TC-UI-CART-01 | Happy | Con carrito vacío, agregar 2 unidades de un producto y 1 de otro | El badge del navbar muestra `3` sin recargar la página |
+| TC-UI-CART-02 | Happy | Vaciar el carrito (eliminar todo en cart.html) | El badge desaparece (no muestra `0`) |
+| TC-UI-CART-03 | Happy | Con productos en el carrito, navegar a otra página | El badge muestra la misma cantidad acumulada (estado persistido) |
+| TC-UI-CART-04 | Negativo | Corromper manualmente `localStorage["carrito"]` con un valor inválido | El badge no rompe la página; muestra 0 / se oculta |
