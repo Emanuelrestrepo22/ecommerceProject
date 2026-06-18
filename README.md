@@ -1,72 +1,91 @@
-# 🛍️ Rick and Morty Store - E-commerce Project
+# 🛍️ Rick and Morty Store — E-commerce Serverless en AWS
 
-## 📜 Description | Descripción
-**English**  
-The **Rick and Morty Store** is a dynamic and fully responsive e-commerce application developed using **HTML, CSS, JavaScript, and Bootstrap**. This store **integrates the Rick and Morty API** to display characters as products, allowing users to browse, add products to a shopping cart, and interact dynamically.  
+Trabajo Práctico Final de la materia **Arquitectura de Sistemas en la Nube con AWS** (IFTS 16).
+E-commerce estático (temática Rick and Morty) con un **módulo de reseñas que implementa un CRUD real sobre AWS**, 100% serverless.
 
-This project demonstrates modern **web development best practices**, focusing on **responsive design**, **dynamic content rendering**, and **interactive features** like a **shopping cart, product detail pages, and a contact form**.
-
-**Español**  
-La **Tienda de Rick and Morty** es una aplicación de comercio electrónico dinámica y completamente responsiva, desarrollada con **HTML, CSS, JavaScript y Bootstrap**. Esta tienda **integra la API de Rick and Morty** para mostrar personajes como productos, permitiendo a los usuarios explorar, agregar productos al carrito de compras e interactuar dinámicamente.  
-
-Este proyecto demuestra **buenas prácticas de desarrollo web moderno**, centrándose en el **diseño responsivo**, la **renderización dinámica de contenido** y **funcionalidades interactivas** como un **carrito de compras, páginas de detalles de productos y un formulario de contacto**.
-
-🔗 **Public API Used:** [Rick and Morty API](https://rickandmortyapi.com/)  
-🔗 **Live Demo:** [GitHub Pages Deployment](https://emanuelrestrepo22.github.io/ecommerceProject/)  
-🔗 **GitHub Repository:** [Clone this Project](https://github.com/emanuelrestrepo22/ecommerceProject.git)
+🔗 **URL pública (en vivo):** https://d2mb47m6hnir3o.cloudfront.net
+🔗 **API base:** https://tvsz0deee9.execute-api.us-east-1.amazonaws.com
 
 ---
 
-## 🌟 Features | Funcionalidades
-✅ **Dynamic Product Display** - Fetches data from the API and renders character cards dynamically.  
-✅ **Product Detail Pages** - Individual pages for each character with in-depth information.  
-✅ **Shopping Cart**  
-   - Add, remove, and update product quantities.  
-   - Total price calculation in real-time.  
-   - Uses **localStorage** to persist cart data.  
-✅ **Featured Products Section** - Displays the top five characters on the homepage.  
-✅ **Responsive Design** - Built with **Flexbox & CSS Grid** to adapt to all screen sizes.  
-✅ **Interactive Contact Form** - Validates user inputs before submission.  
-✅ **Dynamic Review Section** - Showcases customer feedback in a **Bootstrap carousel**.  
-✅ **Custom Navbar** - Developed using **Flexbox**, supporting **mobile navigation**.  
+## Arquitectura — Serverless (Opción C)
+
+```
+Navegador → CloudFront (HTTPS) → S3 (bucket privado, OAC)         [frontend estático]
+                │ fetch()
+                ▼
+         API Gateway (HTTP API) → Lambda (Python) → DynamoDB       [CRUD de reseñas]
+```
+
+| Componente | Servicio AWS | Rol |
+|------------|--------------|-----|
+| Frontend estático | S3 + CloudFront | Hosting + HTTPS/CDN (bucket privado vía OAC) |
+| API REST | API Gateway (HTTP API) | Rutas `GET/POST/DELETE /reviews` + CORS |
+| Lógica | Lambda (Python + boto3) | CRUD de reseñas, enruta por `routeKey` |
+| Base de datos | DynamoDB (`restrepo-review`) | Persistencia de reseñas (PK `id`) |
+| Permisos | IAM (`lab-lambda-exec`) | Rol de ejecución, sin credenciales en el código |
 
 ---
 
-## 🛠️ Technologies Used | Tecnologías Utilizadas
-- **Frontend:** HTML5, CSS3, JavaScript (ES6), Bootstrap  
-- **API Integration:** Fetch API with [Rick and Morty API](https://rickandmortyapi.com/)  
-- **State Management:** localStorage for shopping cart persistence  
-- **Hosting:** GitHub Pages  
+## Funcionalidades
+
+- **Reseñas (CRUD sobre AWS):** crear, listar y eliminar reseñas con persistencia en DynamoDB. Rating con widget de estrellas interactivo.
+- **Catálogo de productos:** consume la [Rick and Morty API](https://rickandmortyapi.com/) para mostrar personajes como productos.
+- **Carrito client-side:** agregar/quitar productos (localStorage) con **contador dinámico (badge 🛒)** en el navbar que se actualiza en vivo.
+- **Diseño responsivo** (Bootstrap 5 + CSS propio) y formulario de contacto.
 
 ---
 
-## 📂 Project Structure | Estructura del Proyecto
+## Estructura del repositorio
 
+```
 ecommerceProject/
-│
-├── index.html                # Página principal (Home)
-├── product-list-page.html    # Página con la lista de productos
-├── product-detail-page.html  # Página con el detalle de cada producto
-├── cart.html                 # Página del carrito de compras
-├── form.html                 # Página de contacto
-├── review.html               # Página de reseñas
-│
-├── css/                      # Carpeta para archivos de estilos
-│   ├── styles.css            # Archivo principal de estilos
-│
-├── js/                       # Carpeta para archivos JavaScript
-│   ├── index.js              # Archivo principal de lógica JS
-│
-├── images/                   # Carpeta para imágenes del proyecto
-│
-├── assets/                   # Carpeta opcional para fuentes o iconos
-│   ├── fonts/                # Carpeta para fuentes personalizadas (si aplica)
-│   ├── icons/                # Carpeta para íconos (si aplica)
-│
-├── README.md                 # Documentación del proyecto
-├── LICENSE                   # Archivo de licencia
-└── .gitignore                # Archivos a ignorar en Git
-
+├── index.html, product-*.html, cart.html, review.html, form.html   # páginas
+├── index.js, cart.js, reviews-api.js, review-and-form.js           # lógica frontend
+├── cart-badge.js                                                   # contador de carrito
+├── config.js                                                       # URL pública de la API (sin secretos)
+├── css/ , img/                                                     # estilos y assets
+├── lambda/lambda_function.py                                       # backend (Lambda Python)
+├── tests/api-smoke.sh , tests/README.md                           # QA automatizado de la API
+├── diagrama-arquitectura.drawio / .svg                            # diagrama de arquitectura
+├── DOCUMENTO-FUNCIONAL.md                                          # documento funcional de definición
+├── DEFENSA.md                                                      # guion de defensa
+├── PLAN-AWS.md , CHANGELOG.md                                      # plan y registro de cambios
+└── dist/                                                           # build a desplegar (gitignored)
+```
 
 ---
 
+## Despliegue (resumen)
+
+1. **DynamoDB:** tabla `restrepo-review`, PK `id` (String), on-demand.
+2. **Lambda:** `restrepo-review-api` (Python 3.13), código en `lambda/lambda_function.py`, var `TABLE_NAME=restrepo-review`, rol `lab-lambda-exec`.
+3. **API Gateway:** HTTP API con `GET/POST/DELETE /reviews` → Lambda, CORS habilitado.
+4. **Frontend:** pegar el Invoke URL en `config.js`, regenerar `dist/`, subir a S3 (`restrepo-ecommerce-frontend`).
+5. **CloudFront:** distribución con OAC, default root object `index.html`, invalidar `/*` tras cada deploy.
+
+Pasos detallados en [DOCUMENTO-FUNCIONAL.md](DOCUMENTO-FUNCIONAL.md) y [PLAN-AWS.md](PLAN-AWS.md).
+
+---
+
+## QA
+
+Suite automatizada de la API (CRUD + negativos), self-cleaning:
+
+```bash
+API_URL=https://tvsz0deee9.execute-api.us-east-1.amazonaws.com bash tests/api-smoke.sh
+```
+
+Casos `TC-API-REVIEWS-01..07` (8/8 PASS) + casos manuales de UI `TC-UI-CART-01..04`. Detalle en [tests/README.md](tests/README.md).
+
+---
+
+## Tecnologías
+
+HTML5, CSS3, JavaScript (ES6), Bootstrap 5 · Python (boto3) · AWS: S3, CloudFront, API Gateway, Lambda, DynamoDB, IAM.
+
+---
+
+## Deuda técnica
+
+El despliegue es manual (subir a S3 + invalidar CloudFront). Mejora recomendada: **CI/CD con Jenkins** para deploy automático ante cada push a `main` (ver propuesta en [DEFENSA.md](DEFENSA.md)).

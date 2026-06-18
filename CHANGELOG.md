@@ -19,7 +19,7 @@ Registro de cambios del proyecto, para trazabilidad integral.
 - `index.html`, `product-list-page.html`, `product-detail-page.html`, `product-card-page.html`, `cart.html`, `review.html`, `form.html` — inclusión de `<script src="./cart-badge.js">`.
 - Documentación: `DOCUMENTO-FUNCIONAL.md` (cap. 20 + alcance), `tests/README.md`.
 
-**Pendiente de despliegue:** re-subir los archivos a S3 (`restrepo-ecommerce-frontend`) e invalidar la caché de CloudFront para que el badge aparezca en la URL pública.
+**Despliegue:** archivos re-subidos a S3 (`restrepo-ecommerce-frontend`) e invalidación `/*` en CloudFront. Verificado en vivo el 2026-06-18: `cart-badge.js` (200), `index.html` y `css/styles.css` sirviendo la versión nueva.
 
 ## 2026-06-17 — Despliegue serverless del CRUD de reseñas
 
